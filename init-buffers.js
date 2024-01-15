@@ -50,12 +50,12 @@ function initBuffers(gl) {
   
   function initColorBuffer(gl) {
     const faceColors = [
-      [1.0, 0.0, 1.0, 1.0], // Front face: white
-      [0.1, 0.9, 0.1, 1.0], // Back face: red
-      [0.1, 0.9, 0.1, 1.0], // Top face: green
-      [0.1, 0.9, 0.1, 1.0], // Bottom face: blue
-      [0.1, 0.9, 0.1, 1.0], // Right face: yellow
-      [0.1, 0.9, 0.1, 1.0], // Left face: purple
+      [0.1, 0.1, 0.1, 0.01], // Front face: white
+      [0.2, 0.2, 0.2, 0.01], // Back face: red
+      [0.15, 0.15, 0.15, 0.01], // Top face: green
+      [0.1, 0.1, 0.1, 0.01], // Bottom face: blue
+      [0.12, 0.12, 0.12, 0.01], // Right face: yellow
+      [0.13, 0.13, 0.13, 0.01], // Left face: purple
     ];
   
     // Convert the array of colors into a table for all the vertices.
