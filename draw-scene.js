@@ -18,7 +18,7 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
     const fieldOfView = (45 * Math.PI) / 180; // in radians
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
-    const zFar = 9.1;
+    const zFar = 5.1;
     const projectionMatrix = mat4.create();
   
     // note: glmatrix.js always has the first argument
