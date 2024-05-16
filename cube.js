@@ -81,6 +81,9 @@ function main() {
   // objects we'll be drawing.
   const buffers = initBuffers(gl);
 
+  
+
+
   let then = 0;
 
   // Draw the scene repeatedly
@@ -96,6 +99,9 @@ function main() {
   }
   requestAnimationFrame(render);
 }
+
+
+
 
 //
 // Initialize a shader program, so WebGL knows how to draw our data

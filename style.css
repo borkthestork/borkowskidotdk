@@ -2,5 +2,10 @@ body {
     background-color: #000;
     vertical-align: middle;
   }
+
+  canvas{
+    display: block;
+    margin: 0 auto;
+  }
   
   

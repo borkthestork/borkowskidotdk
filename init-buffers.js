@@ -1,8 +1,9 @@
-function initBuffers(gl) {
+function initBuffers(gl ) {
     const positionBuffer = initPositionBuffer(gl);
   
-    const colorBuffer = initColorBuffer(gl);
-  
+    //const colorBuffer = initColorBuffer(gl);
+    var colorBuffer = initColorBuffer(gl);
+      
     const indexBuffer = initIndexBuffer(gl);
   
     return {
@@ -49,13 +50,14 @@ function initBuffers(gl) {
   }
   
   function initColorBuffer(gl) {
+    console.log("!!! INIT buffer defining color");
     const faceColors = [
-      [0.1, 0.1, 0.1, 0.01], // Front face: white
-      [0.2, 0.2, 0.2, 0.01], // Back face: red
-      [0.15, 0.15, 0.15, 0.01], // Top face: green
-      [0.1, 0.1, 0.1, 0.01], // Bottom face: blue
-      [0.12, 0.12, 0.12, 0.01], // Right face: yellow
-      [0.13, 0.13, 0.13, 0.01], // Left face: purple
+      [1.0, 1.0, 1.0, 0.01], // Front face: white
+      [1.0, 1.0, 1.0, 0.01], // Back face: red
+      [1.0, 1.0, 1.0, 0.01], // Top face: green
+      [1.0, 1.0, 1.0, 0.01], // Bottom face: blue
+      [1.0, 1.0, 1.0, 0.01], // Right face: yellow
+      [1.0, 1.0, 1.0, 0.01], // Left face: purple
     ];
   
     // Convert the array of colors into a table for all the vertices.
@@ -71,7 +73,8 @@ function initBuffers(gl) {
   
     const colorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    //gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.DYNAMIC_DRAW);
   
     return colorBuffer;
   }

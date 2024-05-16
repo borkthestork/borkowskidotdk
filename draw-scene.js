@@ -1,3 +1,13 @@
+ 
+
+
+
+function oscillate(min, max, time) {
+  return min + (max - min) * Math.sin(time * Math.PI);
+}
+var deltaTime = 1;
+
+ 
 function drawScene(gl, programInfo, buffers, cubeRotation) {
     gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
     gl.clearDepth(1.0); // Clear everything
@@ -18,7 +28,17 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
     const fieldOfView = (45 * Math.PI) / 180; // in radians
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
-    const zFar = 5.1;
+    //const zFar = 50.1;
+    //z = 9 visible (z far is far away)
+    //z = 4 invisble (z far is cose to cam)
+    var zFarTemp = oscillate(5.35, 6, deltaTime)
+    //var zFarTemp = 6;
+    
+    //console.log("ZFAR = " + String(zFarTemp) )
+    const zFar = zFarTemp;
+   
+ 
+
     const projectionMatrix = mat4.create();
   
     // note: glmatrix.js always has the first argument
@@ -86,6 +106,49 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
       const offset = 0;
       gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
     }
+
+    //ending frame, increment time for oscillation of zFar fustrum.
+    if (deltaTime >= 60){
+      console.log("resetting deltaTime = " + String(deltaTime));
+      deltaTime = 1;
+    }else{
+      deltaTime += (0.001);
+      //console.log("deltaTime = " + String(deltaTime));
+    }
+ 
+  }
+
+  function colorUpdate(gl ){
+
+    console.log("color update()");
+
+    const faceColors = [
+      [0.0, 1.0, 0.0, 0.01], // Front face: white
+      [0.0, 1.0, 0.0, 0.01], // Back face: red
+      [0.0, 1.0, 1.0, 0.01], // Top face: green
+      [0.0, 1.0, 0.0, 0.01], // Bottom face: blue
+      [0.0, 1.0, 0.0, 0.01], // Right face: yellow
+      [0.0, 1.0, 0.0, 0.01], // Left face: purple
+    ];
+  
+    // Convert the array of colors into a table for all the vertices.
+  
+    var colors = [];
+  
+    for (var j = 0; j < faceColors.length; ++j) {
+      const c = faceColors[j];
+      // Repeat each color four times for the four vertices of the face
+      colors = colors.concat(c, c, c, c);
+    }
+  
+    //const colorBuffer = gl.createBuffer();
+    //gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+    const getCurrentColorBuffer = colorbuffers;
+    gl.bindBuffer(gl.ARRAY_BUFFER, getCurrentColorBuffer);
+    gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(colors));
+    //gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    //gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.DYNAMIC_DRAW);
+    return getCurrentColorBuffer;
   }
   
   // Tell WebGL how to pull out the positions from the position
@@ -107,17 +170,19 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
       offset
     );
     gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+ 
   }
   
   // Tell WebGL how to pull out the colors from the color buffer
   // into the vertexColor attribute.
   function setColorAttribute(gl, buffers, programInfo) {
+     
     const numComponents = 4;
     const type = gl.FLOAT;
     const normalize = false;
     const stride = 0;
     const offset = 0;
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+    gl.bindBuffer(gl.ARRAY_BUFFER,  buffers.color);
     gl.vertexAttribPointer(
       programInfo.attribLocations.vertexColor,
       numComponents,
