@@ -32,6 +32,7 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
     //z = 9 visible (z far is far away)
     //z = 4 invisble (z far is cose to cam)
     var zFarTemp = oscillate(5.35, 6, deltaTime)
+    //var zFarTemp = oscillate(5.35, 7, deltaTime)
     //var zFarTemp = 6;
     
     //console.log("ZFAR = " + String(zFarTemp) )

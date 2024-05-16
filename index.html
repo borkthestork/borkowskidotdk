@@ -16,8 +16,11 @@
     <link rel="stylesheet" href="style.css"> 
     <meta charset="utf-8" />
     <title>ikswokroB</title>
+      <!--original script source from: -->
+     <!-- src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js" -->
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"
+      src="gl-matrix/gl-matrix-min.js"
+     
       integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
       crossorigin="anonymous"
       defer
@@ -26,7 +29,7 @@
     <script src="cube.js" type="module"></script>
     <script src="zoom.js" type="module"> </script>
 
-    <canvas id="glcanvas" width="500" height="600"></canvas>
+    <canvas id="glcanvas" width="2000" height="1500"></canvas>
     <!-- <canvas id="game-surface" width="700" height="600"></canvas>
     <script src="pyramid.js"></script> -->
 
@@ -35,7 +38,7 @@
 
   <body 
     onload="InitDemo();">
-    <canvas id="glcanvas" width="500" height="600"></canvas>
+    <canvas id="glcanvas" width="2000" height="1500"></canvas>
     <!-- <canvas id="game-surface" width="500" height="600">
     <script src="pyramid.js"></script> -->
     </body>
